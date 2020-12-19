@@ -1,0 +1,20 @@
+name: Check PR's HEAD SHA
+
+on:
+  pull_request:
+    types: [opened, closed, reopened, assigned, unassigned, review_requested, review_request_removed, labeled, unlabeled, synchronized]
+jobs:
+  check-pr-head-sha:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Run a multi-line script
+      env:
+        # This is a way of obtaining the HEAD sha of the pull request's compare branch.
+        # Using the value of the injected GITHUB_SHA for the pull request event gives the last merge commit on the `GITHUB_REF` branch.
+        # This merge commit is used by GitHub internally for determining mergeability and is not the same as the HEAD sha of the PR's compare branch.
+        # Docs: https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows#pull-request-event-pull_request
+        PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+      run: |
+        echo The HEAD SHA of this pull request is $PR_HEAD_SHA
