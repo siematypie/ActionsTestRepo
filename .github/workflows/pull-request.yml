@@ -1,9 +1,8 @@
 name: Check PR's HEAD SHA
 
-on: pull-request
-    types: [opened, closed, reopened, assigned, unassigned, review_requested, review_request_removed, labeled, unlabeled]
-
-
+on:
+  pull_request:
+    types: [opened, closed, reopened, assigned, unassigned, review_requested, review_request_removed, labeled, unlabeled, synchronized]
 jobs:
   check-pr-head-sha:
 
