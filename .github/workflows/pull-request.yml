@@ -15,6 +15,6 @@ jobs:
         # Using the value of the injected GITHUB_SHA for the pull request event gives the last merge commit on the `GITHUB_REF` branch.
         # This merge commit is used by GitHub internally for determining mergeability and is not the same as the HEAD sha of the PR's compare branch.
         # Docs: https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows#pull-request-event-pull_request
-        PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        PR_HEAD_SHA: ${{ github.event.pull_request.head.ref }}
       run: |
         echo The HEAD SHA of this pull request is $PR_HEAD_SHA
